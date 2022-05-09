@@ -1,0 +1,4 @@
+# Heaps
+--cmd haxelib --always install hldx
+--cmd haxelib --always install hlsdl
+--cmd haxelib --always git heaps https://github.com/deepnight/heaps.git
