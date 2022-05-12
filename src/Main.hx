@@ -1,25 +1,29 @@
 class Main extends hxd.App {
-    var bmp : h2d.Bitmap;
-    var hue = 0;
-    override function init() {
-        // allocate a Texture with red color and creates a 100x100 Tile from it
-        var tile = h2d.Tile.fromColor(0xFF0000, 100, 100);
-        // create a Bitmap object, which will display the tile
-        // and will be added to our 2D scene (s2d)
-        bmp = new h2d.Bitmap(tile, s2d);
-        // modify the display position of the Bitmap sprite
-        bmp.x = s2d.width * 0.5;
-        bmp.y = s2d.height * 0.5;
-    }
-    // on each frame
-    override function update(dt:Float) {
-        // increment the display bitmap rotation by 0.1 radians
-        bmp.rotation += 0.1;
-        // There might be a way to update the hue inside the adjustcolour method, but I don't know the syntax for that
-        hue += 1;
-        bmp.adjustColor({saturation : 0, lightness : 0, hue : hue * Math.PI / 180, contrast : 0} );
-    }
+
     static function main() {
+        hxd.Res.initEmbed();
         new Main();
     }
+    
+    override function init() {
+        // create Tile from sampletile.png
+        var tile  = hxd.Res.sampletile.toTile();
+        var width = 49;
+        var height = 49;        
+        var Tgrp = new h2d.TileGroup(tile, s2d);
+        // modify the display position
+        Tgrp.x = width;
+        Tgrp.y = 0;
+        Tgrp.rotation = Math.PI/4;
+
+        for(x in 0 ... 10) for(y in 0 ... 10){
+            Tgrp.add((x+y)*width, -y*height, tile);
+        }
+    }
+    // on each frame
+   /*  override function update(dt:Float) {
+        // increment the display bitmap rotation by 0.1 radians
+        bmp.rotation += 0.1;
+    } */
+
 }
