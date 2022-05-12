@@ -11,7 +11,7 @@ class Main extends hxd.App {
         var th = mapData.tileheight*2;
         var mw = mapData.width;
         var mh = mapData.height;
-        var tileImage = hxd.Res.tiles.toTile();
+        var tileImage = Res.tiles.toTile();
         var group = new h2d.TileGroup(tileImage, s2d);
         group.x = s2d.width/2;
         group.y = s2d.height/4;
@@ -49,7 +49,7 @@ class Main extends hxd.App {
 
     }
     static function main() {
-        hxd.Res.initEmbed();
+        Res.initEmbed();
         new Main();
     }
 }
